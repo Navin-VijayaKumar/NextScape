@@ -6,6 +6,7 @@ import Pond from './Pages/Pond';
 import Decorative from './Pages/Decorative';
 import Marine from './Pages/Marine';
 import { Routes,Route } from 'react-router-dom';
+import InnerDisplay from './Pages/InnerDisplay/InnerDisplay';
 const App = () => {
   return (
     <div>
@@ -16,6 +17,10 @@ const App = () => {
         <Route path='/planted' element={<Planted/>}></Route>
         <Route path='/decorative' element={<Decorative/>}></Route>
         <Route path='/marine' element={<Marine/>}></Route>
+        <Route path=':productID' element={<InnerDisplay />} />
+
+        <Route path='/product/:productID' element={<InnerDisplay/>}></Route>
+
       </Routes>
     </div>
   )

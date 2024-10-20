@@ -21,7 +21,7 @@ const Navbar = () => {
        
        
       </ul>
-      <button>Login</button>
+      <button className='button'>Login</button>
     </div>
   );
 };
