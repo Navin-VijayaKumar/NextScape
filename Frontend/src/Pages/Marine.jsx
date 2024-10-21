@@ -12,11 +12,12 @@ const Marine = () => {
                 <img src={bm2} alt='' className='bp'></img>
 
       {TestData.map((item, i) => {
+        
         if (item.category === 'Marine') {
           return (
-             <div className="all1">
+             <div className="all1" key={item.id}>
 
-            <div key={i}>
+         
             <Link to={`/product/${item.id}`}> <div className="items1">
 
            <img src={item.image} alt=''></img>
@@ -28,7 +29,7 @@ const Marine = () => {
               <p>Price:{item.price}</p>
               </div></Link>
             </div>
-            </div>
+          
           );
         }
         return null; 

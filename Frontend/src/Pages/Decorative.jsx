@@ -11,11 +11,12 @@ const Decorative = () => {
             <img src={bd} alt='' className='bp'></img>
 
       {TestData.map((item, i) => {
+        
         if (item.category === 'Decorative') {
           return (
-            <div className="all1">
+            <div className="all1" key={item.id}>
 
-            <div key={i}>
+          
             <Link to={`/product/${item.id}`}><div className="items1">
 
  <img src={item.image} alt=''></img>
@@ -28,7 +29,7 @@ const Decorative = () => {
               </div>
               </Link>
             </div>
-            </div>
+            
           );
         }
         return null; 
