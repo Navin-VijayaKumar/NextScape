@@ -2,14 +2,14 @@ import React, { useContext } from 'react';
 import { ProductContext } from '../Context/ProductContext';
 import './Marine.css';
 import { Link } from 'react-router-dom';
-import bm2 from './Assertsp/bm2.jpg'
+import mf from './Assertsp/mf.png'
 
 const Marine = () => {
   const { TestData } = useContext(ProductContext);
 
   return (
     <div className='total'>
-                <img src={bm2} alt='' className='bp'></img>
+                <img src={mf} alt='' className='bp'></img>
 
       {TestData.map((item, i) => {
         

@@ -29,3 +29,10 @@ select {
     height: 250px;
     object-fit: cover;  
 }
+.notfound p{
+    font-size: 30px;
+    color: red;
+    font-family: monospace;
+    
+
+}

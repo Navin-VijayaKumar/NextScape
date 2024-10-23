@@ -1,6 +1,6 @@
 import React from 'react'
 import './ProductDisplay.css'
-
+import ani11 from '../Asserts1/ani11.png'
 const ProductDisplay = (props) => {
     const { product } = props;
     
@@ -27,6 +27,21 @@ const ProductDisplay = (props) => {
       <p>Phone Number: {product.PhoneNumber}</p>
       <p>Email: {product.Email}</p>
       <p>Price: {product.price}</p>
+                 </div>
+                 <div className="button1">
+                 <div class="flip-container">
+  <div class="flip-card">
+    <div class="flip-front">
+        <p>Tap to book</p>
+      <img src={ani11} alt='' className='img-flip'></img>
+    </div>
+    <div class="flip-back">
+   
+        <button className='btn'>Book Now</button>
+    </div>
+  </div>
+</div>
+
                  </div>
                 </>
             ) : (

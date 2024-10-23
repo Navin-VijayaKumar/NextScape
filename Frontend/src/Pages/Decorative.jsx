@@ -1,14 +1,14 @@
 import React, { useContext } from 'react';
 import { ProductContext } from '../Context/ProductContext';
 import { Link } from 'react-router-dom';
-import bd from './Assertsp/bd.jpg'
+import decb from './Assertsp/decb.png'
 
 const Decorative = () => {
   const { TestData } = useContext(ProductContext);
 
   return (
     <div className='total'>
-            <img src={bd} alt='' className='bp'></img>
+            <img src={decb} alt='' className='bp'></img>
 
       {TestData.map((item, i) => {
         

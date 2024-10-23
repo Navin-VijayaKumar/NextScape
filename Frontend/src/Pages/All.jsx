@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { ProductContext } from '../Context/ProductContext';
 import { Link } from 'react-router-dom';
-import bd from './Assertsp/bd.jpg';
+import allb from './Assertsp/allb.png';
 import './All.css'
 const All = () => {
   const { TestData } = useContext(ProductContext);
@@ -16,7 +16,7 @@ const All = () => {
       <div className="filter-options">
       <div className="wrapimg">
 
-      <img src={bd} alt=''></img>
+      <img src={allb} alt=''></img>
       
         <div className="select">
 
@@ -69,7 +69,7 @@ const All = () => {
           ))
         ) : (
           <div className="notfound">
-            <p>No products available for the selected state.</p>
+            <p>No Dealer available for the selected state!</p>
           </div>
         )}
         </div>

@@ -2,13 +2,13 @@ import React, { useContext } from 'react';
 import { ProductContext } from '../Context/ProductContext';
 import './Pond.css';
 import { Link } from 'react-router-dom';
-import bpf from './Assertsp/bpf.avif'
+import pbnew from './Assertsp/pbnew.png'
 const Pond = () => {
   const { TestData } = useContext(ProductContext);
 
   return (
     <div className='total'>
-      <img src={bpf} alt='' className='bp'></img>
+      <img src={pbnew} alt='' className='bp'></img>
       {TestData.map((item, i) => {
         if (item.category === 'Pond') {
           return (

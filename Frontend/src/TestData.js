@@ -8,7 +8,7 @@ import d5 from  './assertsall/d5.jpg';
 let TestData = [
   {
     id: 1,
-    image: 'https://picsum.photos/id/237/200/300',
+    image: d1,
     category: "Pond",
     litter: "5000",
       PhoneNumber: "9788665770",
@@ -22,7 +22,7 @@ let TestData = [
   },
   {
     id: 2,
-    image: 'https://picsum.photos/id/237/200/300',
+    image: d1,
     category: "Marine",
     litter: "5000",
       PhoneNumber: "000000000000",
