@@ -10,24 +10,58 @@ const ProductDisplay = (props) => {
   const onSubmit = async (event) => {
     console.log("Mail sender work");
     event.preventDefault();
-    const formData = new FormData(event.target);
+    console.log("Form element:", event.target); // Confirming the form element
 
-    formData.append("access_key", "a8cf2cad-503d-4abc-8d1a-335fd6ad347d");
+    try {
+      const formData = new FormData(event.target);
 
-    const object = Object.fromEntries(formData);
-    const json = JSON.stringify(object);
+      // Append the access key and additional form details
+      formData.append("access_key", "a8cf2cad-503d-4abc-8d1a-335fd6ad347d");
+      formData.append("subject", "A New Booking Request From NextScape");
+      formData.append("message", `♥ Thank You for Booking on our Website ♥`);
 
-    const res = await fetch("https://api.web3forms.com/submit", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json"
-      },
-      body: json
-    }).then((res) => res.json());
+      // Send the email to the admin
+      formData.set("to", "navinv10122004@gmail.com"); // Replace with the admin's email address
+      const adminJson = JSON.stringify(Object.fromEntries(formData));
 
-    if (res.success) {
-      console.log("Success", res);
+      const adminRes = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json"
+        },
+        body: adminJson
+      }).then((res) => res.json());
+
+      if (adminRes.success) {
+        console.log("Email to admin sent successfully");
+      } else {
+        console.error("Error sending email to admin", adminRes);
+      }
+
+      // Send the email to the user (product.Email)
+      formData.set("to", product.Email); // Update the recipient to the user's email
+      const userJson = JSON.stringify(Object.fromEntries(formData));
+
+      const userRes = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json"
+        },
+        body: userJson
+      }).then((res) => res.json());
+
+      if (userRes.success) {
+        console.log("Email to user sent successfully");
+        alert("Booking successful! Emails have been sent.");
+      } else {
+        console.error("Error sending email to user", userRes);
+        alert("Booking successful, but there was an error sending the email to the user.");
+      }
+    } catch (error) {
+      console.error("Error", error);
+      alert("An error occurred. Please try again later.");
     }
   };
 
@@ -36,7 +70,7 @@ const ProductDisplay = (props) => {
       {product && product.image ? (
         <>
           <div className="product-image">
-            <img src={product.image} alt='' />
+            <img src={product.image} alt="Product" />
           </div>
           <div className="content">
             <h2>Dealer Details</h2>
@@ -59,7 +93,7 @@ const ProductDisplay = (props) => {
                     <p>Tap to book</p>
                   </div>
                   <div>
-                    <img src={ani11} alt='' className='img-flip' />
+                    <img src={ani11} alt="Animation" className='img-flip' />
                   </div>
                 </div>
                 <div className="flip-back">
@@ -75,7 +109,27 @@ const ProductDisplay = (props) => {
                       name="date"
                       required
                     />
-                    <button type="submit" className='btn'>Book Now</button>
+                    <input
+                      type="text"
+                      name="address"
+                      placeholder="Your Address"
+                      required
+                    />
+                    <input
+                      type="email"
+                      name="email"
+                      placeholder="Your Email"
+                      required
+                    />
+                    <input
+                      type="number"
+                      name="mobileNumber"
+                      placeholder="Mobile Number"
+                      required
+                    />
+                    <div className="flipbtn">
+                      <button type="submit" className='btn'>Book Now</button>
+                    </div>
                   </form>
                 </div>
               </div>

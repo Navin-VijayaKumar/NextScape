@@ -12,7 +12,7 @@ let TestData = [
     category: "Pond",
     litter: "5000",
       PhoneNumber: "9788665770",
-      Email: "navinv.22cse@kongu.edu",
+      Email: "mugeshv.22cse@kongu.edu",
       address: "abc",
       state: "Tamil Nadu",
       District: "Erode",
