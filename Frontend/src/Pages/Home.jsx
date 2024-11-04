@@ -84,7 +84,7 @@ const Home = () => {
           <div className="items11"><p>planted</p></div>
           <div className="items22"><p>full</p></div>
           <div className="des">
-            <p>riiiiiiiiiiiiiiiicniorcceinnnnnn</p>
+            <p>riiiiiiiiiiiiiiiicniorccenn</p>
           </div>
           <div className="button-1">
             <button>See More</button>

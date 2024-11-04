@@ -37,6 +37,42 @@
     height: 50px;
   }
   
+.all{
+  display: flex;
+  padding: -1% -1%;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.all{
+  flex: 1;
+  text-align: right;
+}
+.all ul li{
+  list-style: none;
+  display: inline-block;
+  padding: 8px 14px;
+  position: relative;
+}
+.all ul li a{
+  color: rgb(71, 75, 72);
+  text-decoration:none ;
+  font-size: 19px;
+}
+.all ul li::after{
+  content: '';
+  width: 0%;
+  height: 2px;
+  background: rgb(18, 236, 236);
+  display: block;
+  margin: auto;
+  transition: 0.5s ;
+
+}
+.all ul li:hover::after{
+  width: 100%;
+}
+  
   .button {
     padding: 8px 16px;
     background-color: #007bff;
@@ -62,4 +98,9 @@
     justify-content: space-between;
 
 
+  }
+li.active {
+font-size: 22px;
+margin-bottom: 15px;
+font-weight: 600;
   }

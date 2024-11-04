@@ -126,3 +126,10 @@
     height: 280px;
     background: none;
     }
+  .flip-front{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    border: 2px solidlinear-gradient(267deg,#DA7C25,#B923E1 102.06%);
+  }
