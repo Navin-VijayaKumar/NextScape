@@ -1,60 +1,104 @@
-.container-1{
-    width: 100vw;
-    height: 100vw;
+*::before,*::after{
+    box-sizing: border-box;
 }
-.container-1 .list-1 .items-1{
-    inset: 0 0 0 0;
+body{
+    margin: 0;
 }
-.container-1 .list-1 .items-1 img{
+.carousel{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: black;
+}
+.carousel > ul{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    height: 100%; 
+    background-color: black;
+
+}
+.slider1{
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 0.7s ease-in-out;
+    
+}
+
+
+ul[data-slides] {
+    display: flex;
+    transition: transform 0.5s ease-in-out; 
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+.slider1 > img{
+    padding-top: 80px;
+    display: block;
     width: 100%;
     height: 100%;
     object-fit: cover;
-    
+    object-position: center;
 }
-.container-1 .list-1 .items-1 .content-1{
+.slider1[data-active]
+{
+    opacity: 1;
+}
+.carousel button{
+    z-index: 2;
     position: absolute;
-    top: 20%;
-    width: 1140px;
-    max-width: 80%;
-    left: 50%;
-    transform: translateX(-50%);
-    padding-right: 30%;
-    box-sizing: border-box;
-    color: white;
-    text-shadow: 0 5pxx 10px black;
-}
-.container-1 .list-1 .items-1 .content-1 .items00{
-    font-weight: bold;
-
-    letter-spacing: 10px;
-}
-.container-1 .list-1 .items-1 .content-1 .items11
-.container-1 .list-1 .items-1 .content-1 .items22{
-    font-weight: bold;
-    font-size: 5em;
-    list-style: 1.3em;
-
-}
-.container-1 .list-1 .items-1 .content-1 .items22{
-    color:orangered;
-}
-.container-1 .list-1 .items-1 .content-1 .button-1{
-    display: grid;
-    grid-template-columns: repeat(2,130px);
-    grid-template-rows: 40px;
-    gap: 50px;
-    margin-top: 20px;
-}
-
-.container-1 .list-1 .items-1 .content-1 button{
+    background: none;
     border: none;
-    background-color: white;
-    letter-spacing: 3px;
-    font-family: sans-serif;
-    font-weight: 600;
+    font-size: 4rem;
+    top:50%;
+    transform: translateY(-50%);
+    color:rgba(255,255,255,.5);
+    cursor: pointer;
+    border-radius: .25rem;
+    padding: 0 .5rem;
+    background-color: rgba(0,0,0, .3);
+
 }
-.container-1 .list-1 .items-1 .content-1 button:nth-child(2){
-    background-color: transparent;
-    color: white;
-    border: 1px solid white;
+.carousel button:hover{
+    color: rgb(255, 255, 255);
+    background-color: rgba(0,0,0, .4);
 }
+.carousel button:focus{
+    outline: 1px solid rgb(0, 0, 0);
+}
+.button1n{
+    left: 1rem;
+}
+.button2n{
+    right: 1rem;
+}
+.carousal-all{
+    background-color: black;
+}
+.slide-text {
+    position: absolute; 
+    top: 50%; 
+    left: 50%;
+    transform: translate(-50%, -50%); 
+    color: white; 
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.5); 
+    padding: 20px;
+    border-radius: 10px; 
+  }
+  
+  .slide-text h1 {
+    margin: 0;
+    font-size: 2.8rem;
+    color: orangered;
+  }
+  
+  .slide-text p {
+    margin: 0;
+    font-size: 1.6rem; 
+  }
+  

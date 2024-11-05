@@ -157,6 +157,12 @@
     flex-direction: column;
     border: 2px solidlinear-gradient(267deg,#DA7C25,#B923E1 102.06%);
   }
+  .flip-front p{
+    font-size: 35px;
+    font-weight: 600;
+
+
+  }
   input{
   
     color: #000;
