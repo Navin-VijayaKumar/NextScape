@@ -16,6 +16,7 @@ let TestData = [
       address: "abc",
       state: "Tamil Nadu",
       District: "Erode",
+      Dimensions:"150*250",
     decorationLevel: "basic",
     filterationType: "top filter", 
     price: "20000", 
@@ -30,6 +31,8 @@ let TestData = [
       address: "abc",
       state: "Kerala",
       District: "Palakkad",
+      Dimensions:"150*250",
+
     decorationLevel: "basic", 
     filterationType: "standard", 
     price: "2500",
@@ -44,6 +47,8 @@ let TestData = [
       address: "abc",
       state: "Tamil Nadu",
       District: "Erode",
+      Dimensions:"150*250",
+
 
     decorationLevel: "premium",
     filterationType: "advanced",
@@ -59,6 +64,8 @@ let TestData = [
       address: "abc",
       state: "Tamil Nadu",
       District: "Erode",
+      Dimensions:"150*250",
+
    
     decorationLevel: "premium", 
     filterationType: "advanced", 
@@ -75,7 +82,8 @@ let TestData = [
       address: "abc",
       state: "Tamil Nadu",
       District: "Erode",
-   
+      Dimensions:"150*250",
+
     decorationLevel: "standard", 
     filterationType: "basic", 
     price: "1500",
@@ -91,7 +99,8 @@ let TestData = [
       address: "abc",
       state: "Tamil Nadu",
       District: "Erode",
-   
+      Dimensions:"150*250",
+
     decorationLevel: "standard",
     filterationType: "basic", 
     price: "1800", 

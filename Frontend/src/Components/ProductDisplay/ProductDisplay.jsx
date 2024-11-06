@@ -82,6 +82,7 @@ const ProductDisplay = (props) => {
             <p>District: {product.District}</p>
             <p>Address: {product.address}</p>
             <p>Phone Number: {product.PhoneNumber}</p>
+            <p>Dimensions: {product.Dimensions} sqm</p>
             <p>Email: {product.Email}</p>
             <p>Price: {product.price}</p>
           </div>
