@@ -5,9 +5,11 @@ import Planted from './Pages/Planted';
 import Pond from './Pages/Pond';
 import Decorative from './Pages/Decorative';
 import Marine from './Pages/Marine';
-import { Routes,Route } from 'react-router-dom';
+import { Routes,Route} from 'react-router-dom';
 import InnerDisplay from './Pages/InnerDisplay/InnerDisplay';
 import All from './Pages/All';
+import Form from './Components/Header/Form';
+import { AuthProvider } from './contexts/authContext';
 const App = () => {
   return (
     <div>
@@ -19,11 +21,18 @@ const App = () => {
         <Route path='/decorative' element={<Decorative/>}></Route>
         <Route path='/marine' element={<Marine/>}></Route>
         <Route path='/all' element={<All/>}></Route>
+
         <Route path=':productID' element={<InnerDisplay />} />
 
         <Route path='/product/:productID' element={<InnerDisplay/>}></Route>
 
       </Routes>
+      <AuthProvider>
+            <Routes>
+        <Route path='/login' element={<Form/>}></Route>
+              
+            </Routes>
+        </AuthProvider>
     </div>
   )
 }

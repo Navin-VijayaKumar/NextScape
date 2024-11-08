@@ -1,0 +1,237 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #f9fafb;
+  }
+  
+  /* Centering the form container */
+  .main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .w-full {
+    width: 100%;
+  }
+  
+  .h-screen {
+    height: 100vh;
+  }
+  
+  .self-center {
+    margin: 0 auto;
+  }
+  
+  .place-content-center {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .place-items-center {
+    display: flex;
+    align-items: center;
+  }
+  
+  /* Form container styles */
+  .w-96 {
+    width: 24rem;
+  }
+  
+  .text-gray-600 {
+    color: #4a4a4a;
+  }
+  
+  .space-y-5 {
+    margin-bottom: 1.25rem;
+  }
+  
+  .p-4 {
+    padding: 1rem;
+  }
+  
+  .shadow-xl {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .border {
+    border: 1px solid #e5e7eb;
+  }
+  
+  .rounded-xl {
+    border-radius: 0.75rem;
+  }
+  
+  /* Title styling */
+  .text-center {
+    text-align: center;
+  }
+  
+  .mt-2 {
+    margin-top: 0.5rem;
+  }
+  
+  .text-gray-800 {
+    color: #1f2937;
+  }
+  
+  .text-xl {
+    font-size: 1.25rem;
+  }
+  
+  .font-semibold {
+    font-weight: 600;
+  }
+  
+  .sm\:text-2xl {
+    font-size: 1.5rem;
+  }
+  
+  /* Input styling */
+  input {
+    width: 100%;
+    padding: 0.5rem 1rem;
+    margin-top: 0.5rem;
+    background-color: transparent;
+    border: 1px solid #d1d5db;
+    border-radius: 0.5rem;
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  input:focus {
+    border-color: #6366f1;
+    box-shadow: 0 0 0 1px #6366f1;
+  }
+  
+  .text-sm {
+    font-size: 0.875rem;
+  }
+  
+  .text-gray-600 {
+    color: #4a4a4a;
+  }
+  
+  .font-bold {
+    font-weight: 700;
+  }
+  
+  /* Button styling */
+  button {
+    width: 100%;
+    padding: 0.75rem 1.25rem;
+    background-color: #4f46e5;
+    color: white;
+    border-radius: 0.5rem;
+    font-weight: 500;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    cursor: pointer;
+  }
+  
+  button:disabled {
+    background-color: #d1d5db;
+    cursor: not-allowed;
+  }
+  
+  button:hover:not(:disabled) {
+    background-color: #4338ca;
+    transform: translateY(-2px);
+  }
+  
+  button:active:not(:disabled) {
+    background-color: #3730a3;
+    transform: translateY(1px);
+  }
+  
+  button.flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  button .w-5,
+  button .h-5 {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+  
+  /* Link styles */
+  a {
+    color: #4f46e5;
+    text-decoration: none;
+  }
+  
+  a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Separator for Google Sign-in */
+  .flex-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1.25rem 0;
+  }
+  
+  .border-b-2 {
+    border-bottom-width: 2px;
+    flex: 1;
+  }
+  
+  .mb-2-5 {
+    margin-bottom: 0.625rem;
+  }
+  
+  .mr-2 {
+    margin-right: 0.5rem;
+  }
+  
+  .ml-2 {
+    margin-left: 0.5rem;
+  }
+  
+  .text-sm {
+    font-size: 0.875rem;
+  }
+  
+  .font-bold {
+    font-weight: 700;
+  }
+  
+  .w-fit {
+    width: fit-content;
+  }
+  
+  /* Google Sign-In Button */
+  button.google-signin {
+    background-color: transparent;
+    border: 1px solid #d1d5db;
+    color: #4f46e5;
+    font-size: 0.875rem;
+    display: flex;
+    gap: 0.5rem;
+  }
+  
+  button.google-signin:hover {
+    background-color: #f9fafb;
+  }
+  
+  button.google-signin:disabled {
+    cursor: not-allowed;
+  }
+  
+  button.google-signin svg {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+  
+  /* Error message styling */
+  .text-red-600 {
+    color: #ef4444;
+  }
+  
+  .font-bold {
+    font-weight: bold;
+  }
