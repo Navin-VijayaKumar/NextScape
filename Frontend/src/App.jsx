@@ -10,10 +10,11 @@ import InnerDisplay from './Pages/InnerDisplay/InnerDisplay';
 import All from './Pages/All';
 import Form from './Components/Header/Form';
 import { AuthProvider } from './contexts/authContext';
+import Register from './Components/Header/Register';
 const App = () => {
   return (
     <div>
-      <Navbar/>
+      <Navbar/> 
       <Routes>
         <Route path='/' element={<Home/>}></Route>
         <Route path='/pond' element={<Pond></Pond>}></Route>
@@ -30,6 +31,7 @@ const App = () => {
       <AuthProvider>
             <Routes>
         <Route path='/login' element={<Form/>}></Route>
+        <Route path='/register' element={<Register/>}></Route>
               
             </Routes>
         </AuthProvider>
