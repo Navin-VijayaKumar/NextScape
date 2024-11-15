@@ -1,68 +1,70 @@
-import React from 'react';
+import React, { useState } from 'react';
+
 import './ProductDisplay.css';
 import ani11 from '../Asserts1/ani11.png';
 
 const ProductDisplay = (props) => {
   const { product } = props;
 
-  console.log('Product:', product);
+  const [name, setName] = useState('');
+  const [date, setDate] = useState('');
+  const [address, setAddress] = useState('');
+  const [userEmail, setUserEmail] = useState('');
+  const [contactNumber, setContactNumber] = useState('');
 
-  const onSubmit = async (event) => {
-    console.log("Mail sender work");
-    event.preventDefault();
-    console.log("Form element:", event.target); // Confirming the form element
+  const handleSendEmail = async () => {
+    const bodyContent = `
+      Pet ID: ${product?.id}
+      Pet ID: ${product?.id}
+      Name: ${name}
+      Pick-up Date: ${date}
+      Address: ${address}
+      Contact Number: ${contactNumber}
+      Email: ${userEmail}
+  
+      <h2>Dealer Details</h2>
+            <p>Dealer Details: ${product.dealername}</p>
+            <p>Category: ${product.category}</p>
+            <p>Litter: ${product.litter}</p>
+            <p>Filtration: ${product.filterationType}</p>
+            <p>Decoration: ${product.decorationLevel}</p>
+            <p>State: ${product.state}</p>
+            <p>District: ${product.District}</p>
+            <p>Address: ${product.address}</p>
+            <p>Phone Number: ${product.PhoneNumber}</p>
+            <p>Dimensions: ${product.Dimensions} sqm</p>
+            <p>Email: ${product.Email}</p>
+            <p>Price: ${product.price}</p>
+
+    `;
+
+    const emailData = {
+      to: product?.Email,
+      subject: 'Aqua Scape Order',
+      text: bodyContent,
+      productId: product?.id,
+      
+      
+    };
 
     try {
-      const formData = new FormData(event.target);
-
-      // Append the access key and additional form details
-      formData.append("access_key", "a8cf2cad-503d-4abc-8d1a-335fd6ad347d");
-      formData.append("subject", "A New Booking Request From NextScape");
-      formData.append("message", `♥ Thank You for Booking on our Website ♥`);
-
-      // Send the email to the admin
-      formData.set("to", "navinv10122004@gmail.com"); // Replace with the admin's email address
-      const adminJson = JSON.stringify(Object.fromEntries(formData));
-
-      const adminRes = await fetch("https://api.web3forms.com/submit", {
-        method: "POST",
+      await fetch('http://localhost:4000/send-email', {
+        method: 'POST',
         headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json"
+          'Content-Type': 'application/json',
         },
-        body: adminJson
-      }).then((res) => res.json());
-
-      if (adminRes.success) {
-        console.log("Email to admin sent successfully");
-      } else {
-        console.error("Error sending email to admin", adminRes);
-      }
-
-      // Send the email to the user (product.Email)
-      formData.set("to", product.Email); // Update the recipient to the user's email
-      const userJson = JSON.stringify(Object.fromEntries(formData));
-
-      const userRes = await fetch("https://api.web3forms.com/submit", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json"
-        },
-        body: userJson
-      }).then((res) => res.json());
-
-      if (userRes.success) {
-        console.log("Email to user sent successfully");
-        alert("Booking successful! Emails have been sent.");
-      } else {
-        console.error("Error sending email to user", userRes);
-        alert("Booking successful, but there was an error sending the email to the user.");
-      }
+        body: JSON.stringify(emailData),
+      });
+      alert('Email sent successfully!');
     } catch (error) {
-      console.error("Error", error);
-      alert("An error occurred. Please try again later.");
+      console.error('Error sending email:', error);
+      alert('Failed to send email.');
     }
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault(); // Prevent the form's default submission behavior
+    handleSendEmail(); // Call the function to send email
   };
 
   return (
@@ -74,6 +76,8 @@ const ProductDisplay = (props) => {
           </div>
           <div className="content">
             <h2>Dealer Details</h2>
+            <p>Dealer Details: {product.DealerName}</p>
+
             <p>Category: {product.category}</p>
             <p>Litter: {product.litter}</p>
             <p>Filtration: {product.filterationType}</p>
@@ -94,42 +98,52 @@ const ProductDisplay = (props) => {
                     <p>Tap to book</p>
                   </div>
                   <div>
-                    <img src={ani11} alt="Animation" className='img-flip' />
+                    <img src={ani11} alt="Animation" className="img-flip" />
                   </div>
                 </div>
                 <div className="flip-back">
-                  <form onSubmit={onSubmit} className='form-sub'>
+                  <form onSubmit={handleSubmit} className="form-sub">
                     <input
                       type="text"
                       name="name"
                       placeholder="Your Name"
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
                       required
                     />
                     <input
                       type="date"
                       name="date"
+                      value={date}
+                      onChange={(e) => setDate(e.target.value)}
                       required
                     />
                     <input
                       type="text"
                       name="address"
                       placeholder="Your Address"
+                      value={address}
+                      onChange={(e) => setAddress(e.target.value)}
                       required
                     />
                     <input
                       type="email"
                       name="email"
                       placeholder="Your Email"
+                      value={userEmail}
+                      onChange={(e) => setUserEmail(e.target.value)}
                       required
                     />
                     <input
                       type="number"
                       name="mobileNumber"
                       placeholder="Mobile Number"
+                      value={contactNumber}
+                      onChange={(e) => setContactNumber(e.target.value)}
                       required
                     />
                     <div className="flipbtn">
-                      <button type="submit" className='btn'>Book Now</button>
+                      <button type="submit" className="btn">Book Now</button>
                     </div>
                   </form>
                 </div>
@@ -142,6 +156,6 @@ const ProductDisplay = (props) => {
       )}
     </div>
   );
-}
+};
 
 export default ProductDisplay;

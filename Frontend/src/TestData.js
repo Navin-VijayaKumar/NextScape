@@ -9,6 +9,8 @@ let TestData = [
   {
     id: 1,
     image: d1,
+    dealerName:'cj',
+
     category: "Pond",
     litter: "5000",
       PhoneNumber: "9788665770",
@@ -24,6 +26,8 @@ let TestData = [
   {
     id: 2,
     image: d1,
+    dealerName:'cj',
+
     category: "Marine",
     litter: "5000",
       PhoneNumber: "000000000000",
@@ -40,6 +44,8 @@ let TestData = [
   {
     id: 3,
     image: d1,
+    dealerName:'cj',
+
     category: "Pond",
     litter: "cat",
       PhoneNumber: "000000000000",
@@ -57,6 +63,8 @@ let TestData = [
   {
     id: 4,
     image: d2,
+    dealerName:'cj',
+
     category: "Pond",
     litter: "cat",
       PhoneNumber: "000000000000",
@@ -74,6 +82,8 @@ let TestData = [
   {
     id: 5,
     image: d5,
+    dealerName:'cj',
+
     category: "Decorative",
     litter: "cat",
   
@@ -91,6 +101,7 @@ let TestData = [
   {
     id: 6,
     image: c4,
+    dealerName:'cj',
     category: "Pond",
     litter: "cat",
     

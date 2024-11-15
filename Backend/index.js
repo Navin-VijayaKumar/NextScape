@@ -4,6 +4,9 @@ const jwt = require("jsonwebtoken");
 const multer = require("multer");
 const path = require("path");
 const cors = require("cors");
+const nodemailer =require("nodemailer");
+
+
 
 const app = express();
 const port = 4000;
@@ -28,12 +31,11 @@ const storage = multer.diskStorage({
     }
 });
 
-// File filter to only allow specific image formats (e.g., .png, .jpg, .jpeg)
 const fileFilter = (req, file, cb) => {
     const fileTypes = /jpeg|jpg|png|gif/;
     const extname = fileTypes.test(path.extname(file.originalname).toLowerCase());
     const mimeType = fileTypes.test(file.mimetype);
-
+    
     if (extname && mimeType) {
         cb(null, true);  // Accept file
     } else {
@@ -57,6 +59,49 @@ app.post('/upload', upload.single('image'), (req, res) => {
         return res.status(400).json({ success: false, message: "Image upload failed" });
     }
 });
+const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+        user: 'navinv.22cse@kongu.edu', 
+        pass: '9788665770', 
+    }
+});
+app.post('/send-email', (req, res) => {
+    const { to, subject, text, productId } = req.body;  
+    console.log("Sending email to:", to);
+
+const mailOptionsUser = {
+    from: 'navinv.22cse@kongu.edu',
+    to,  
+    subject,
+    text,
+};
+
+
+const mailOptionsAdmin = {
+    from: 'navinv.22cse@kongu.edu',
+    to: 'navinv.22cse@kongu.edu',
+    subject: `Next Scape`,
+    text: `An order has been sent to ${to} regarding Aqua Scape and the PET ID: ${productId}.`,
+};
+transporter.sendMail(mailOptionsUser, (error, info) => {
+    if (error) {
+        console.error('Error sending email:', error);
+        return res.status(500).json({ success: false, message: 'Error sending email', error });
+    }
+    console.log('Email sent to user:', info.response);
+
+    // Send notification email to the admin
+    transporter.sendMail(mailOptionsAdmin, (adminError, adminInfo) => {
+        if (adminError) {
+            console.error('Error sending notification email to admin:', adminError);
+            return res.status(500).json({ success: false, message: 'Error sending notification email', adminError });
+        }
+        console.log('Notification email sent to admin:', adminInfo.response);
+        res.json({ success: true, message: 'Email sent successfully' });
+    });
+});
+});
 
 // Root route
 app.get("/", (req, res) => {
@@ -68,6 +113,7 @@ app.get("/", (req, res) => {
 // Product Schema
 const productSchema = new mongoose.Schema({
     id: Number,
+    DealerName:String,
     image: String,
     category: String,
     litter: String,
@@ -93,6 +139,7 @@ app.post('/addproduct', async (req, res) => {
         
             id: req.body.id,
             image: req.body.image,
+            DealerName: req.body.name,
             category: req.body.category,
             litter: req.body.litter,
             PhoneNumber: req.body.PhoneNumber,
