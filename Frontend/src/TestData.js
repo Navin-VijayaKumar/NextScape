@@ -9,7 +9,7 @@ let TestData = [
   {
     id: 1,
     image: d1,
-    dealerName:'cj',
+    DealerName:'cj',
 
     category: "Pond",
     litter: "5000",

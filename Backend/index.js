@@ -78,12 +78,7 @@ const mailOptionsUser = {
 };
 
 
-const mailOptionsAdmin = {
-    from: 'navinv.22cse@kongu.edu',
-    to: 'navinv.22cse@kongu.edu',
-    subject: `Next Scape`,
-    text: `An order has been sent to ${to} regarding Aqua Scape and the PET ID: ${productId}.`,
-};
+
 transporter.sendMail(mailOptionsUser, (error, info) => {
     if (error) {
         console.error('Error sending email:', error);
@@ -91,15 +86,7 @@ transporter.sendMail(mailOptionsUser, (error, info) => {
     }
     console.log('Email sent to user:', info.response);
 
-    // Send notification email to the admin
-    transporter.sendMail(mailOptionsAdmin, (adminError, adminInfo) => {
-        if (adminError) {
-            console.error('Error sending notification email to admin:', adminError);
-            return res.status(500).json({ success: false, message: 'Error sending notification email', adminError });
-        }
-        console.log('Notification email sent to admin:', adminInfo.response);
-        res.json({ success: true, message: 'Email sent successfully' });
-    });
+   
 });
 });
 

@@ -14,33 +14,36 @@ const ProductDisplay = (props) => {
 
   const handleSendEmail = async () => {
     const bodyContent = `
-      Pet ID: ${product?.id}
-      Pet ID: ${product?.id}
-      Name: ${name}
-      Pick-up Date: ${date}
-      Address: ${address}
-      Contact Number: ${contactNumber}
-      Email: ${userEmail}
-  
-      <h2>Dealer Details</h2>
-            <p>Dealer Details: ${product.dealername}</p>
-            <p>Category: ${product.category}</p>
-            <p>Litter: ${product.litter}</p>
-            <p>Filtration: ${product.filterationType}</p>
-            <p>Decoration: ${product.decorationLevel}</p>
-            <p>State: ${product.state}</p>
-            <p>District: ${product.District}</p>
-            <p>Address: ${product.address}</p>
-            <p>Phone Number: ${product.PhoneNumber}</p>
-            <p>Dimensions: ${product.Dimensions} sqm</p>
-            <p>Email: ${product.Email}</p>
-            <p>Price: ${product.price}</p>
+                  Client Details
 
+            Product ID: ${product?.id}
+            Client Name: ${name}
+            Order Date: ${date}
+            Address: ${address}
+            Contact Number: ${contactNumber}
+            Email: ${userEmail}
+
+            
+                  Dealer Details
+
+            Dealer Details: ${product.DealerName}
+            Category: ${product.category}        
+            Litter: ${product.litter}
+            Filtration: ${product.filterationType}
+            Decoration: ${product.decorationLevel}
+            State: ${product.state}
+            District: ${product.District}
+            Address: ${product.address}
+            Phone Number: ${product.PhoneNumber}
+            Dimensions: ${product.Dimensions} sqm
+            Email: ${product.Email}
+            Price: ${product.price}
+
+            ❤ Thank you for ordering ❤
     `;
 
     const emailData = {
-      to: product?.Email,
-      subject: 'Aqua Scape Order',
+      to: `${product?.Email || ''}, navinv.22cse@kongu.edu`,      subject: `Next Scape`,
       text: bodyContent,
       productId: product?.id,
       
