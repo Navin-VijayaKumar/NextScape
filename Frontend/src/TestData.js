@@ -65,7 +65,7 @@ let TestData = [
     image: d2,
     dealerName:'cj',
 
-    category: "Pond",
+    category: "Planted",
     litter: "cat",
       PhoneNumber: "000000000000",
       Email: "sample@gmail.com",

@@ -23,10 +23,10 @@ mongoose.connection.on("connected", () => {
 // Multer storage for file uploads
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-        cb(null, './upload/images');  // Set the destination folder for image uploads
+        cb(null, './upload/images');  
     },
     filename: (req, file, cb) => {
-        // Use a unique filename format
+
         cb(null, `image_${Date.now()}${path.extname(file.originalname)}`);
     }
 });
@@ -37,15 +37,15 @@ const fileFilter = (req, file, cb) => {
     const mimeType = fileTypes.test(file.mimetype);
     
     if (extname && mimeType) {
-        cb(null, true);  // Accept file
+        cb(null, true); 
     } else {
-        cb(new Error('Only image files are allowed!'), false);  // Reject file
+        cb(new Error('Only image files are allowed!'), false); 
     }
 };
 
 const upload = multer({
     storage: storage,
-    limits: { fileSize: 2 * 1024 * 1024 },  // 2 MB file size limit
+    limits: { fileSize: 2 * 1024 * 1024 },  
     fileFilter: fileFilter,
 });
 
@@ -100,8 +100,8 @@ app.get("/", (req, res) => {
 // Product Schema
 const productSchema = new mongoose.Schema({
     id: Number,
-    DealerName:String,
     image: String,
+    DealerName: String,
     category: String,
     litter: String,
     PhoneNumber: String,
@@ -126,7 +126,7 @@ app.post('/addproduct', async (req, res) => {
         
             id: req.body.id,
             image: req.body.image,
-            DealerName: req.body.name,
+            DealerName: req.body.DealerName,
             category: req.body.category,
             litter: req.body.litter,
             PhoneNumber: req.body.PhoneNumber,
@@ -157,7 +157,7 @@ app.post('/removeproduct', async (req, res) => {
 // Get All Products
 app.get('/allproducts', async (req, res) => {
     let products = await Product.find({});
-    console.log("All products are displayed from database");
+    console.log("Request body:", req.body);
     res.send(products);
 });
 

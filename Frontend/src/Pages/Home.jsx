@@ -57,7 +57,7 @@ const Home = () => {
               data-active={index === activeIndex ? true : null}
             >
               <img src={image} alt={`Slide ${index + 1}`} />
-              {index === activeIndex && ( // Display text only for the active slide
+              {index === activeIndex && ( 
                 <div className="slide-text">
                   <h1>{texts[index].title}</h1>
                   <p>{texts[index].description}</p>

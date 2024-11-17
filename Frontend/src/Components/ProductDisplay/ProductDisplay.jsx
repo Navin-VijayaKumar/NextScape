@@ -43,7 +43,8 @@ const ProductDisplay = (props) => {
     `;
 
     const emailData = {
-      to: `${product?.Email || ''}, navinv.22cse@kongu.edu`,      subject: `Next Scape`,
+      to: `${product?.Email}, navinv.22cse@kongu.edu`,
+      subject: `Next Scape`,
       text: bodyContent,
       productId: product?.id,
       
@@ -66,8 +67,8 @@ const ProductDisplay = (props) => {
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault(); // Prevent the form's default submission behavior
-    handleSendEmail(); // Call the function to send email
+    e.preventDefault(); 
+    handleSendEmail(); 
   };
 
   return (
@@ -98,7 +99,7 @@ const ProductDisplay = (props) => {
               <div className="flip-card">
                 <div className="flip-front">
                   <div>
-                    <p>Tap to book</p>
+                    <p>Tap to Book</p>
                   </div>
                   <div>
                     <img src={ani11} alt="Animation" className="img-flip" />
