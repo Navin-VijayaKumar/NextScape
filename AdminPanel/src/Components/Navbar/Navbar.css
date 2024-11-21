@@ -1,4 +1,9 @@
-img{
+
+.control-panel{
+    margin: 0;
+    
+}
+.adminimg{
     height: 60px;
     width: 60px;
     position: absolute;
@@ -11,7 +16,7 @@ img{
     flex-direction: row;
     padding-top: 10px;
     top: 1rem;
-  
+
    
 }
 .adminimg{
@@ -31,4 +36,4 @@ img{
     margin: 60px auto;
     width: 100%; 
   }
-  
+ 

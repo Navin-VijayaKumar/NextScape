@@ -3,7 +3,7 @@ import './Navbar.css'
 import sg from '../AssertsAdmin/sg.gif'
 const Navbar = () => {
   return (
-   <>
+   <div className='control-panel'>
     <div className="navAdmin">
     <div className='admintext'>
         <h1>Welcome to Admin Panel</h1>
@@ -16,7 +16,7 @@ const Navbar = () => {
 
     </div>
     <hr className="custom-hr" />  
-   </>
+   </div>
     
   )
 }
