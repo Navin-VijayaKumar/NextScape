@@ -12,7 +12,7 @@
   
   .all {
     display: flex;
-    justify-content: space-between; /* Spread elements */
+    justify-content: space-between;
     align-items: center;
     padding: 15px 8%;
     background-color: #ecfdff;
@@ -48,6 +48,21 @@
   flex: 1;
   text-align: right;
 }
+.alg {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 8%;
+  background-color: #ecfdff;
+  font-size: 16px;
+}
+
+.alg ul {
+  padding: 10px 30px;
+  border-radius: 30px;
+  box-shadow: 0 0 30px 0 rgba(0, 0, 0, 0.1);
+}
+
 .all ul li{
   list-style: none;
   display: inline-block;
