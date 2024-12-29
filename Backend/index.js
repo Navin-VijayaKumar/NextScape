@@ -67,28 +67,26 @@ const transporter = nodemailer.createTransport({
     }
 });
 app.post('/send-email', (req, res) => {
-    const { to, subject, text, productId } = req.body;  
-    console.log("Sending email to:", to);
+    const { to, subject, text, productId } = req.body;
+    console.log('Received email data:', { to, subject, productId });
 
-const mailOptionsUser = {
-    from: 'navinv.22cse@kongu.edu',
-    to,  
-    subject,
-    text,
-};
+    const mailOptionsUser = {
+        from: 'navinv.22cse@kongu.edu',
+        to, // Recipient
+        subject,
+        text,
+    };
 
-
-
-transporter.sendMail(mailOptionsUser, (error, info) => {
-    if (error) {
-        console.error('Error sending email:', error);
-        return res.status(500).json({ success: false, message: 'Error sending email', error });
-    }
-    console.log('Email sent to user:', info.response);
-
-   
+    transporter.sendMail(mailOptionsUser, (error, info) => {
+        if (error) {
+            console.error('Error sending email:', error);
+            return res.status(500).json({ success: false, message: 'Error sending email', error });
+        }
+        console.log('Email sent successfully:', info.response);
+        res.status(200).json({ success: true, message: 'Email sent successfully' });
+    });
 });
-});
+
 
 // Root route
 app.get("/", (req, res) => {

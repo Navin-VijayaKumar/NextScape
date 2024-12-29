@@ -17,7 +17,7 @@
 }
 .list-all-product{
     display: flex;
-    width: 100%;
+    width: 1500px;
     align-items: center;
     justify-content: space-around;
     flex-direction: column;

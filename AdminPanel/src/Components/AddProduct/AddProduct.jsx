@@ -1,33 +1,23 @@
-// id: Number,
-// image: String,
-// DealerName: String,
-// category: String,
-// litter: String,
-// PhoneNumber: String,
-// Email: String,
-// address: String,
-// state: String,
-// District: String,
-// Dimensions: String,
-// decorationLevel: String,
-// filterationType: String,
-// price: String
-
 import React, { useState } from 'react';
 import './Addproduct.css';
+import upload from '../AssertsAdmin/upload.png';
 
 const AddProduct = () => {
   const [productDetails, setProductDetails] = useState({
     id: "",
-    name: "",
     image: null,
+    DealerName: "",
     category: "",
-    age: "",
-    address: "",
-    state: "",
+    litter: "",
     PhoneNumber: "",
     Email: "",
+    address: "",
+    state: "",
     District: "",
+    Dimensions: "",
+    decorationLevel: "",
+    filterationType: "",
+    price: "",
   });
 
   const [isLoading, setIsLoading] = useState(false); // For button state
@@ -41,34 +31,35 @@ const AddProduct = () => {
   };
 
   const Add_Product = async () => {
-    if (!productDetails.name || !productDetails.image || !productDetails.category) {
-      alert("Please fill all required fields.");
+    // Dynamic field validation
+    for (const key in productDetails) {
+      if (!productDetails[key] && key !== "image") {
+        alert(`Please fill the ${key} field.`);
+        return;
+      }
+    }
+    if (!productDetails.image) {
+      alert("Please upload an image.");
       return;
     }
 
     setIsLoading(true); // Disable button while processing
-    let responseData;
-    let formData = new FormData();
 
-    formData.append('id', productDetails.id);
-    formData.append('image', productDetails.image);
-    formData.append('name', productDetails.name);
-    formData.append('category', productDetails.category);
-    formData.append('age', productDetails.age);
-    formData.append('address', productDetails.address);
-    formData.append('state', productDetails.state);
-    formData.append('PhoneNumber', productDetails.PhoneNumber);
-    formData.append('Email', productDetails.Email);
-    formData.append('District', productDetails.District);
+    let formData = new FormData();
+    for (const key in productDetails) {
+      formData.append(key, productDetails[key]);
+    }
 
     try {
+      // Upload the image
       const uploadResponse = await fetch('http://localhost:4000/upload', {
         method: 'POST',
         body: formData,
       });
-      responseData = await uploadResponse.json();
+      const responseData = await uploadResponse.json();
 
       if (responseData.success) {
+        // Add the product
         const product = { ...productDetails, image: responseData.image_url };
 
         const productResponse = await fetch('http://localhost:4000/addproduct', {
@@ -81,26 +72,42 @@ const AddProduct = () => {
 
         const result = await productResponse.json();
         if (result.success) {
-          alert("Pet Details added successfully");
+          alert("Product added successfully");
+          setProductDetails({
+            id: "",
+            image: null,
+            DealerName: "",
+            category: "",
+            litter: "",
+            PhoneNumber: "",
+            Email: "",
+            address: "",
+            state: "",
+            District: "",
+            Dimensions: "",
+            decorationLevel: "",
+            filterationType: "",
+            price: "",
+          });
         } else {
-          alert("Failed to add Pet Details");
+          alert("Failed to add product.");
         }
       } else {
-        alert("Failed to upload image");
+        alert("Failed to upload image.");
       }
     } catch (error) {
       console.error("Error:", error);
-      alert("An error occurred while adding the pet.");
+      alert("An error occurred while adding the product.");
     } finally {
-      setIsLoading(false); 
+      setIsLoading(false);
     }
   };
 
   return (
     <div className="addproduct">
       <div className="addproduct-items">
+        <h1>ADD PRODUCT</h1>
         <div className="addproduct-field">
-          <h1>ADD PRODUCT</h1>
           <p>Product ID</p>
           <input
             value={productDetails.id}
@@ -115,24 +122,23 @@ const AddProduct = () => {
         <div className="addproduct-field">
           <p>Dealer Name</p>
           <input
-            value={productDetails.name}
+            value={productDetails.DealerName}
             onChange={changeHandler}
             type="text"
-            name="name"
+            name="DealerName"
             placeholder="Enter Name"
             required
           />
         </div>
 
-    
         <div className="addproduct-field">
           <p>Product Capacity</p>
           <input
-            value={productDetails.age}
+            value={productDetails.litter}
             onChange={changeHandler}
             type="text"
             name="litter"
-            placeholder="Enter Litter"
+            placeholder="Enter Capacity"
             required
           />
         </div>
@@ -158,22 +164,10 @@ const AddProduct = () => {
             className="selector"
             required
           >
+            <option value="">Select State</option>
             <option value="Tamil Nadu">Tamil Nadu</option>
             <option value="Kerala">Kerala</option>
-            <option value="Andhra Pradesh">Andhra Pradesh</option>
-            <option value="Assam">Assam</option>
-            <option value="Goa">Goa</option>
-            <option value="Gujarat">Gujarat</option>
-            <option value="Haryana">Haryana</option>
-            <option value="Karnataka">Karnataka</option>
-            <option value="Madhya Pradesh">Madhya Pradesh</option>
-            <option value="Maharashtra">Maharashtra</option>
-            <option value="Manipur">Manipur</option>
-            <option value="Punjab">Punjab</option>
-            <option value="Rajasthan">Rajasthan</option>
-            <option value="Uttar Pradesh">Uttar Pradesh</option>
-            <option value="Uttarakhand">Uttarakhand</option>
-            <option value="West Bengal">West Bengal</option>
+            {/* Add more states as needed */}
           </select>
         </div>
 
@@ -183,8 +177,8 @@ const AddProduct = () => {
             value={productDetails.category}
             onChange={changeHandler}
             name="category"
-            required
             className="selector"
+            required
           >
             <option value="">Select Category</option>
             <option value="pond">Pond</option>
@@ -205,25 +199,27 @@ const AddProduct = () => {
             required
           />
         </div>
+
         <div className="addproduct-field">
           <p>Dimensions</p>
           <input
-            value={productDetails.PhoneNumber}
+            value={productDetails.Dimensions}
             onChange={changeHandler}
             type="text"
-            name="dimensions"
+            name="Dimensions"
             placeholder="Enter Dimensions"
             required
           />
         </div>
+
         <div className="addproduct-field">
-          <p>Total Cost</p>
+          <p>Price</p>
           <input
-            value={productDetails.PhoneNumber}
+            value={productDetails.price}
             onChange={changeHandler}
             type="text"
             name="price"
-            placeholder="Enter The  Price"
+            placeholder="Enter Price"
             required
           />
         </div>
@@ -252,11 +248,10 @@ const AddProduct = () => {
           />
         </div>
 
-
         <div className="addproduct-field">
           <label htmlFor="file-input">
             <p>Upload Product Image</p>
-            {/* <img src={up} className="imaged" alt="upload" /> */}
+            <img src={upload} className="imaged" alt="upload" />
           </label>
           <input
             onChange={changeHandler}
@@ -264,18 +259,49 @@ const AddProduct = () => {
             name="image"
             id="file-input"
             hidden
-            required
           />
         </div>
 
+        <div className="addproduct-field addproduct-category">
+          <p>Decoration Level</p>
+          <select
+            value={productDetails.decorationLevel}
+            onChange={changeHandler}
+            name="decorationLevel"
+            required
+            className="selector"
+          >
+            <option value="">Select Decoration Level</option>
+            <option value="high">High</option>
+            <option value="mid">Mid</option>
+            <option value="low">Low</option>
+          </select>
+        </div>
+
+        <div className="addproduct-field addproduct-category">
+          <p>Filteration Type</p>
+          <select
+            value={productDetails.filterationType}
+            onChange={changeHandler}
+            name="filterationType"
+            required
+            className="selector"
+          >
+            <option value="">Select Filteration Type</option>
+            <option value="sump">Sump</option>
+            <option value="topfilter">Top Filter</option>
+            <option value="canister">Canister</option>
+          </select>
+        </div>
+
         <div className="down">
-        <button
-          onClick={Add_Product}
-          className="addproduct-button"
-          disabled={isLoading}
-        >
-          {isLoading ? "Adding..." : "Add"}
-        </button>
+          <button
+            onClick={Add_Product}
+            className="addproduct-button"
+            disabled={isLoading}
+          >
+            {isLoading ? "Adding..." : "Add"}
+          </button>
         </div>
       </div>
     </div>
