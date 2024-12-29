@@ -25,9 +25,8 @@ select {
     flex-direction: column;
 }
 .wrapimg img{
-    width: 1150px;
-    height: 250px;
-    object-fit: cover;  
+    width: 1800px;
+    height: 350px;
 }
 .notfound p{
     font-size: 30px;
@@ -36,3 +35,4 @@ select {
     
 
 }
+
