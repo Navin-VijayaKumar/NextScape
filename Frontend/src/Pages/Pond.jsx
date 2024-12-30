@@ -10,7 +10,7 @@ const Pond = () => {
     <div className='total'>
       <img src={pbnew} alt='' className='bp'></img>
       {TestData.map((item, i) => {
-        if (item.category === 'Pond') {
+        if (item.category === 'pond') {
           return (
             <div className="all1" key={item.id}>  {/* Updated key prop here */}
               <Link to={`/product/${item.id}`}>

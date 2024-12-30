@@ -12,7 +12,7 @@ const Planted = () => {
           <img src={bp} alt='' className='bp'></img>
 
       {TestData.map((item, i) => {
-        if (item.category === 'Planted') {
+        if (item.category === 'planted') {
           return (
             <div className="all1" key={item.id}>
 

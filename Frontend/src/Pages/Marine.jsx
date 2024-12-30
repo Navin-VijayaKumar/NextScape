@@ -13,7 +13,7 @@ const Marine = () => {
 
       {TestData.map((item, i) => {
         
-        if (item.category === 'Marine') {
+        if (item.category === 'marine') {
           return (
              <div className="all1" key={item.id}>
 

@@ -12,7 +12,7 @@ const Decorative = () => {
 
       {TestData.map((item, i) => {
         
-        if (item.category === 'Decorative') {
+        if (item.category === 'decorative') {
           return (
             <div className="all1" key={item.id}>
 
