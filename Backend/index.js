@@ -4,9 +4,8 @@ const jwt = require("jsonwebtoken");
 const multer = require("multer");
 const path = require("path");
 const cors = require("cors");
-const nodemailer =require("nodemailer");
-
-
+const nodemailer = require("nodemailer");
+const fs = require("fs");
 
 const app = express();
 const port = process.env.PORT || 4000;
@@ -19,14 +18,18 @@ mongoose.connection.on("connected", () => {
     console.log("Connected to MongoDB");
 });
 
+// Ensure upload directory exists
+const uploadDir = path.join(__dirname, "upload/images");
+if (!fs.existsSync(uploadDir)) {
+    fs.mkdirSync(uploadDir, { recursive: true });
+}
 
 // Multer storage for file uploads
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-        cb(null, './upload/images');  
+        cb(null, uploadDir);
     },
     filename: (req, file, cb) => {
-
         cb(null, `image_${Date.now()}${path.extname(file.originalname)}`);
     }
 });
@@ -37,20 +40,22 @@ const fileFilter = (req, file, cb) => {
     const mimeType = fileTypes.test(file.mimetype);
     
     if (extname && mimeType) {
-        cb(null, true); 
+        cb(null, true);
     } else {
-        cb(new Error('Only image files are allowed!'), false); 
+        cb(new Error('Only image files are allowed!'), false);
     }
 };
 
 const upload = multer({
     storage: storage,
-    limits: { fileSize: 2 * 1024 * 1024 },  
+    limits: { fileSize: 2 * 1024 * 1024 },
     fileFilter: fileFilter,
 });
 
-app.use("/images", express.static('upload/images'));
+// Serve images correctly
+app.use("/images", express.static(uploadDir));
 
+// Image upload route
 app.post('/upload', upload.single('image'), (req, res) => {
     if (req.file) {
         const image_url = `https://nextscape-backend.onrender.com/images/${req.file.filename}`;
@@ -59,20 +64,24 @@ app.post('/upload', upload.single('image'), (req, res) => {
         return res.status(400).json({ success: false, message: "Image upload failed" });
     }
 });
+
+// Email transporter
 const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-        user: 'navinv.22cse@kongu.edu', 
-        pass: '9788665770', 
+        user: 'navinv.22cse@kongu.edu',
+        pass: '9788665770',
     }
 });
+
+// Send email route
 app.post('/send-email', (req, res) => {
-    const { to, subject, text, productId } = req.body;
-    console.log('Received email data:', { to, subject, productId });
+    const { to, subject, text } = req.body;
+    console.log('Received email data:', { to, subject });
 
     const mailOptionsUser = {
         from: 'navinv.22cse@kongu.edu',
-        to, // Recipient
+        to,
         subject,
         text,
     };
@@ -87,13 +96,11 @@ app.post('/send-email', (req, res) => {
     });
 });
 
-
 // Root route
 app.get("/", (req, res) => {
     res.send("Express app is running");
     console.log("Express app is running");
 });
-
 
 // Product Schema
 const productSchema = new mongoose.Schema({
@@ -121,31 +128,27 @@ app.post('/addproduct', async (req, res) => {
     let id = products.length > 0 ? products[products.length - 1].id + 1 : 1;
 
     const product = new Product({
-        
-            id: req.body.id,
-            image: req.body.image,
-            DealerName: req.body.DealerName,
-            category: req.body.category,
-            litter: req.body.litter,
-            PhoneNumber: req.body.PhoneNumber,
-            Email: req.body.Email,
-            address: req.body.address,
-            state: req.body.state,
-            District: req.body.District,
-            Dimensions: req.body.Dimensions,
-            decorationLevel: req.body.decorationLevel,
-            filterationType: req.body.filterationType,
-            price: req.body.price
-         
-          
+        id,
+        image: req.body.image,
+        DealerName: req.body.DealerName,
+        category: req.body.category,
+        litter: req.body.litter,
+        PhoneNumber: req.body.PhoneNumber,
+        Email: req.body.Email,
+        address: req.body.address,
+        state: req.body.state,
+        District: req.body.District,
+        Dimensions: req.body.Dimensions,
+        decorationLevel: req.body.decorationLevel,
+        filterationType: req.body.filterationType,
+        price: req.body.price
     });
 
     await product.save();
     console.log("Product saved:", product);
-    res.json({ success: true, name: req.body.name });
+    res.json({ success: true, name: req.body.DealerName });
 });
 
-// Remove Product
 app.post('/removeproduct', async (req, res) => {
     await Product.findOneAndDelete({ id: req.body.id });
     console.log("Product removed:", req.body.id);
@@ -155,7 +158,7 @@ app.post('/removeproduct', async (req, res) => {
 // Get All Products
 app.get('/allproducts', async (req, res) => {
     let products = await Product.find({});
-    console.log("Request body:", req.body);
+    console.log("Fetched all products");
     res.send(products);
 });
 
