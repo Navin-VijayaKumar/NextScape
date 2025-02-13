@@ -14,14 +14,16 @@ app.use(express.json());
 app.use(cors());
 
 mongoose.connect("mongodb+srv://navinv:9788665770@cluster0.27dbj.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0");
+
 mongoose.connection.on("connected", () => {
     console.log("Connected to MongoDB");
 });
 
 // Ensure upload directory exists
-const uploadDir = path.join(__dirname, "upload/images");
+const uploadDir = path.resolve(__dirname, "upload/images");
 if (!fs.existsSync(uploadDir)) {
     fs.mkdirSync(uploadDir, { recursive: true });
+    console.log("Created upload directory:", uploadDir);
 }
 
 // Multer storage for file uploads
@@ -38,7 +40,7 @@ const fileFilter = (req, file, cb) => {
     const fileTypes = /jpeg|jpg|png|webp/;
     const extname = fileTypes.test(path.extname(file.originalname).toLowerCase());
     const mimeType = fileTypes.test(file.mimetype);
-    
+
     if (extname && mimeType) {
         cb(null, true);
     } else {
@@ -58,9 +60,11 @@ app.use("/images", express.static(uploadDir));
 // Image upload route
 app.post('/upload', upload.single('image'), (req, res) => {
     if (req.file) {
+        console.log("File uploaded:", req.file.filename);
         const image_url = `https://nextscape-backend.onrender.com/images/${req.file.filename}`;
         return res.json({ success: true, image_url });
     } else {
+        console.log("Image upload failed");
         return res.status(400).json({ success: false, message: "Image upload failed" });
     }
 });
