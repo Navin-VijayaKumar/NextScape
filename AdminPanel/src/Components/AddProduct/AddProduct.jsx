@@ -52,7 +52,7 @@ const AddProduct = () => {
 
     try {
       // Upload the image
-      const uploadResponse = await fetch('http://localhost:4000/upload', {
+      const uploadResponse = await fetch('https://nextscape-backend.onrender.com/upload', {
         method: 'POST',
         body: formData,
       });
@@ -62,7 +62,7 @@ const AddProduct = () => {
         // Add the product
         const product = { ...productDetails, image: responseData.image_url };
 
-        const productResponse = await fetch('http://localhost:4000/addproduct', {
+        const productResponse = await fetch('https://nextscape-backend.onrender.com/addproduct', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
