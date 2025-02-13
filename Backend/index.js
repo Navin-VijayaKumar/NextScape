@@ -11,8 +11,7 @@ const app = express();
 const port = process.env.PORT || 4000;
 
 app.use(express.json());
-const cors = require('cors');
-app.use(cors({ origin: 'https://nextscape-frontend.onrender.com' }));
+app.use(cors());
 
 mongoose.connect("mongodb+srv://navinv:9788665770@cluster0.27dbj.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0");
 
