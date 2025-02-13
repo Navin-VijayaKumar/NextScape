@@ -52,7 +52,7 @@ const ProductDisplay = (props) => {
     };
 
     try {
-      await fetch('http://localhost:4000/send-email', {
+      await fetch('https://nextscape-backend.onrender.com/send-email', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
