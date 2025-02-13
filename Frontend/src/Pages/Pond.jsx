@@ -2,33 +2,31 @@ import React, { useContext } from 'react';
 import { ProductContext } from '../Context/ProductContext';
 import './Pond.css';
 import { Link } from 'react-router-dom';
-import pbnew from './Assertsp/pbnew.png'
+import pbnew from './Assertsp/pbnew.png';
+
 const Pond = () => {
   const { TestData } = useContext(ProductContext);
+  
+  const pondItems = TestData.filter(item => item.category === 'pond');
 
   return (
     <div className='total'>
-      <img src={pbnew} alt='' className='bp'></img>
-      {TestData.map((item, i) => {
-        if (item.category === 'pond') {
-          return (
-            <div className="all1" key={item.id}>  {/* Updated key prop here */}
-              <Link to={`/product/${item.id}`}>
-                <div className="items1">
-                  <img src={item.image} alt=''></img>
-                  <p>Category: {item.category}</p>
-                  <p>Litter: {item.litter}</p>
-                  <p>Filteration: {item.filterationType}</p>
-                  <p>Decoration: {item.decorationLevel}</p>
-                  <p>State: {item.state}</p>
-                  <p>Price: {item.price}</p>
-                </div>
-              </Link>
+      <img src={pbnew} alt='Background' className='bp' />
+      {pondItems.map((item) => (
+        <div className="all1" key={item.id}>
+          <Link to={`/product/${item.id}`}>
+            <div className="items1">
+              <img src={item.image || 'default-placeholder.png'} alt='Product' />
+              <p>Category: {item.category}</p>
+              <p>Litter: {item.litter}</p>
+              <p>Filtration: {item.filterationType}</p>
+              <p>Decoration: {item.decorationLevel}</p>
+              <p>State: {item.state}</p>
+              <p>Price: {item.price}</p>
             </div>
-          );
-        }
-        return null; 
-      })}
+          </Link>
+        </div>
+      ))}
     </div>
   );
 };
