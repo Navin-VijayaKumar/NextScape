@@ -43,7 +43,7 @@ const ProductDisplay = (props) => {
     `;
 
     const emailData = {
-      to: `${product?.Email}, navinv.22cse@kongu.edu`,
+      to: [product?.Email, userEmail, 'navinv.22cse@kongu.edu'].filter(Boolean).join(','),
       subject: `Next Scape`,
       text: bodyContent,
       productId: product?.id,

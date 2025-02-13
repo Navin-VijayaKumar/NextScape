@@ -22,17 +22,13 @@ const App = () => {
         <Route path='/decorative' element={<Decorative/>}></Route>
         <Route path='/marine' element={<Marine/>}></Route>
         <Route path='/all' element={<All/>}></Route>
-
         <Route path=':productID' element={<InnerDisplay />} />
-
         <Route path='/product/:productID' element={<InnerDisplay/>}></Route>
-
       </Routes>
       <AuthProvider>
             <Routes>
         <Route path='/login' element={<Form/>}></Route>
-        <Route path='/register' element={<Register/>}></Route>
-              
+        <Route path='/register' element={<Register/>}></Route>              
             </Routes>
         </AuthProvider>
     </div>

@@ -17,7 +17,8 @@ const Planted = () => {
             <div className="all1" key={item.id}>
 
            
-            <Link to={`/product/${item.id}`}>     <div className="items1">
+            <Link to={`/product/${item.id}`}>     
+            <div className="items1">
 
                <img src={item.image} alt=''></img>
               <p>Category:{item.category}</p>
