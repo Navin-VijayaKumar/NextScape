@@ -5,7 +5,7 @@ const ProductContextProvider=(props) =>{
     const [TestData, setTestData] = useState([]);
 
     useEffect(() => {
-      fetch('http://localhost:4000/allproducts')
+      fetch('https://nextscape-backend.onrender.com/allproducts')
         .then((response) => response.json())
         .then((data) => setTestData(data))
         .catch((error) => console.error('Error fetching products:', error));
