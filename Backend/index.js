@@ -11,7 +11,7 @@ const app = express();
 const port = process.env.PORT || 4000;
 
 app.use(express.json());
-app.use(cors());
+app.use(cors({ origin: "*" })); // Allow all origins
 
 mongoose.connect("mongodb+srv://navinv:9788665770@cluster0.27dbj.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0");
 
@@ -62,6 +62,7 @@ app.post('/upload', upload.single('image'), (req, res) => {
     if (req.file) {
         console.log("File uploaded:", req.file.filename);
         const image_url = `https://nextscape-backend.onrender.com/images/${req.file.filename}`;
+        console.log("Returning image URL:", image_url);
         return res.json({ success: true, image_url });
     } else {
         console.log("Image upload failed");
@@ -133,7 +134,7 @@ app.post('/addproduct', async (req, res) => {
 
     const product = new Product({
         id,
-        image: req.body.image,
+        image: req.body.image.replace("http://", "https://"), // Ensure HTTPS
         DealerName: req.body.DealerName,
         category: req.body.category,
         litter: req.body.litter,
@@ -162,6 +163,13 @@ app.post('/removeproduct', async (req, res) => {
 // Get All Products
 app.get('/allproducts', async (req, res) => {
     let products = await Product.find({});
+    
+    // Ensure image URLs use HTTPS
+    products = products.map(product => ({
+        ...product._doc,
+        image: product.image?.replace("http://", "https://")
+    }));
+
     console.log("Fetched all products");
     res.send(products);
 });
