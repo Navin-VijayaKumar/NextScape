@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './Addproduct.css';
+import './AddProduct.css';
 import upload from '../AssertsAdmin/upload.png';
 
 const AddProduct = () => {
