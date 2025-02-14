@@ -78,7 +78,7 @@ const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
         user: 'navinv.22cse@kongu.edu',
-        pass: '9788665770',
+        pass: 'epuu zram baie mktd',
     }
 });
 
