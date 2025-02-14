@@ -58,10 +58,12 @@ const upload = multer({
 app.use("/images", express.static(uploadDir));
 
 // Image upload route
+const backendURL = "https://nextscape-backend.onrender.com";
+
 app.post('/upload', upload.single('image'), (req, res) => {
     if (req.file) {
         console.log("File uploaded:", req.file.filename);
-        const image_url = `https://nextscape-backend.onrender.com/images/${req.file.filename}`;
+        const image_url = `${backendURL}/images/${req.file.filename}`;
         console.log("Returning image URL:", image_url);
         return res.json({ success: true, image_url });
     } else {
@@ -69,6 +71,7 @@ app.post('/upload', upload.single('image'), (req, res) => {
         return res.status(400).json({ success: false, message: "Image upload failed" });
     }
 });
+
 
 // Email transporter
 const transporter = nodemailer.createTransport({
