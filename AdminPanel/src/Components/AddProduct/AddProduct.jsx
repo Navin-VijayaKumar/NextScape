@@ -5,19 +5,20 @@ import upload from '../AssertsAdmin/upload.png';
 const AddProduct = () => {
   const [productDetails, setProductDetails] = useState({
     id: "",
-    image: null,
     DealerName: "",
-    category: "",
     litter: "",
-    PhoneNumber: "",
-    Email: "",
     address: "",
     state: "",
-    District: "",
+    category: "",
+    PhoneNumber: "",
+
     Dimensions: "",
+    price: "",
+    Email: "",
+    District: "",
+    image: null,
     decorationLevel: "",
     filterationType: "",
-    price: "",
   });
 
   const [isLoading, setIsLoading] = useState(false); // For button state
