@@ -22,7 +22,7 @@ const RemoveProduct = () => {
 
   const removeProduct = async (id) => {
     try {
-      const response = await fetch('http://localhost:4000/removeproduct', {
+      const response = await fetch('https://nextscape-backend.onrender.com/removeproduct', {
         method: 'POST',
         headers: {
           Accept: 'application/json',
