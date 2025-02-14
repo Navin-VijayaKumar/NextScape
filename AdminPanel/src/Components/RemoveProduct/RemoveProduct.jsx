@@ -1,4 +1,4 @@
-import './Removeproduct.css';
+import './RemoveProduct.css';
 import React, { useEffect, useState } from 'react';
 import delete1 from '../AssertsAdmin/delete1.png';
 
