@@ -28,7 +28,7 @@ const ProductDisplay = (props) => {
 
             Dealer Details: ${product.DealerName}
             Category: ${product.category}        
-            Litter: ${product.litter}
+            Litres: ${product.litter}
             Filtration: ${product.filterationType}
             Decoration: ${product.decorationLevel}
             State: ${product.state}
@@ -83,7 +83,7 @@ const ProductDisplay = (props) => {
             <p>Dealer Details: {product.DealerName}</p>
 
             <p>Category: {product.category}</p>
-            <p>Litter: {product.litter}</p>
+            <p>Litres: {product.litter}</p>
             <p>Filtration: {product.filterationType}</p>
             <p>Decoration: {product.decorationLevel}</p>
             <p>State: {product.state}</p>

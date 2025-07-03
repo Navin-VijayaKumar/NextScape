@@ -74,35 +74,44 @@ app.post('/upload', upload.single('image'), (req, res) => {
 
 
 // Email transporter
+
 const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
         user: 'navinv.22cse@kongu.edu',
-        pass: 'epuu zram baie mktd',
+        pass: 'epuu zram baie mktd', // Use App Password here
     }
 });
 
+
 // Send email route
-app.post('/send-email', (req, res) => {
+app.post('/send-email', async (req, res) => {
     const { to, subject, text } = req.body;
     console.log('Received email data:', { to, subject });
 
+    if (!to || !subject || !text) {
+        console.log("Missing fields: ", { to, subject, text });
+        return res.status(400).json({ success: false, message: 'Missing required fields' });
+    }
+
     const mailOptionsUser = {
-        from: 'navinv.22cse@kongu.edu',
+        from: 'navinv.22cse@kongu.edu', 
         to,
         subject,
         text,
     };
 
-    transporter.sendMail(mailOptionsUser, (error, info) => {
-        if (error) {
-            console.error('Error sending email:', error);
-            return res.status(500).json({ success: false, message: 'Error sending email', error });
-        }
+    try {
+        const info = await transporter.sendMail(mailOptionsUser);
         console.log('Email sent successfully:', info.response);
         res.status(200).json({ success: true, message: 'Email sent successfully' });
-    });
+    } catch (error) {
+        console.error('Error sending email:', error);
+        res.status(500).json({ success: false, message: 'Error sending email', error: error.message });
+    }
 });
+
+
 
 // Root route
 app.get("/", (req, res) => {
